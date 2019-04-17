@@ -1,0 +1,26 @@
+{
+  "name": "fst-api-tools",
+  "version": "1.0.0",
+  "description": "fst api tools =============",
+  "main": "index.js",
+  "scripts": {
+    "start": "bankai start index.js",
+    "build": "rm -rf dist && bankai build index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackersanddesigners/fst-api-tools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hackersanddesigners/fst-api-tools/issues"
+  },
+  "homepage": "https://github.com/hackersanddesigners/fst-api-tools#readme",
+  "dependencies": {
+    "bankai": "^9.15.0",
+    "choo": "^6.13.3",
+    "choo-devtools": "^2.5.1",
+    "xhr": "^2.5.0"
+  }
+}
