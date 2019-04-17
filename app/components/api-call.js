@@ -5,9 +5,8 @@ const path = 'search'
 
 xhr({
   method: 'get',
-  url: baseUrl + path + '/?authorization=' + pk,
-  json: true
+  url: baseUrl + path + '/?authorization=' + pk
 }, function (err, resp, body) {
   if (err) throw err
-  console.log(body)
+  console.log(err, reps, body)
 })
