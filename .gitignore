@@ -1,3 +1,5 @@
 /node_modules/
 /app/dist/
+/public/*.js
+/public/*.css
 .env
