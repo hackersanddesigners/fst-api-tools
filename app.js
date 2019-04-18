@@ -6,23 +6,30 @@ const parser = require('xml2json');
 
 require('dotenv').config()
 
+app.use(express.static('public'))
+
+
+// --- index
 app.get('/', (req, res) => {
-  res.send('hi hi!')
+  res.render(__dirname + '/index.html')
 })
 
 // --- api
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
 const pk = process.env.PK
-const q = 'lack'
-const pgs = '3'
+app.post('/api-ask', (req, res, next) => {
+  const q = req.body.query
+  const pgs = req.body.pgs
 
-query = `https://zoeken.oba.nl/api/v1/search/?authorization=${pk}&q=${q}&pagesize=${pgs}`
-
-app.get('/api', (req, res) => {
+  const query = `https://zoeken.oba.nl/api/v1/search/?authorization=${pk}&q=${q}&pagesize=${pgs}`
   rq(query, (err, resp, body) => {
     const data = parser.toJson(body)
     console.log(err, data)
-    res.json(data)
+    res.set('Content-Type', 'application/json');
+    res.send(data)
   })
-})
+});
 
 app.listen(port, () => console.log(`app listening on port ${port}`))
