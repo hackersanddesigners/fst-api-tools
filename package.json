@@ -4,8 +4,18 @@
   "description": "fst api tools =============",
   "main": "index.js",
   "scripts": {
-    "start": "bankai start index.js",
-    "build": "rm -rf dist && bankai build index.js"
+    "start": "watchify ./app/index.js -o ./public/bundle.js --debug --verbose -t sheetify -p [ css-extract -o ./public/bundle.css ] ./app/index.js",
+    "build": "browserify ./app/index.js -o ../public/bundle.js -t yo-yoify -t  [ sheetify -u sheetify-cssnext ] -g es2040 -p [ css-extract -o ./public/bundle.css ] -p tinyify"
+  },
+  "sheetify": {
+    "transform": [
+      [
+        "sheetify-cssnext",
+        {
+          "sourcemap": false
+        }
+      ]
+    ]
   },
   "repository": {
     "type": "git",
@@ -18,13 +28,23 @@
   },
   "homepage": "https://github.com/hackersanddesigners/fst-api-tools#readme",
   "dependencies": {
-    "bankai": "^9.15.0",
+    "browserify": "^16.2.3",
     "choo": "^6.13.3",
     "choo-devtools": "^2.5.1",
+    "css-extract": "^1.3.0",
     "dotenv": "^7.0.0",
+    "es2020": "^1.1.9",
+    "es2040": "^1.2.6",
     "express": "^4.16.4",
+    "gr8": "^3.1.5",
+    "recsst": "^1.1.2",
     "request": "^2.88.0",
+    "sheetify": "^7.3.3",
+    "sheetify-cssnext": "^2.0.0",
+    "tinyify": "^2.5.0",
+    "watchify": "^3.11.1",
     "xhr": "^2.5.0",
-    "xml2json": "^0.11.2"
+    "xml2json": "^0.11.2",
+    "yo-yoify": "^4.3.0"
   }
 }
